@@ -1,10 +1,10 @@
 #include "lists.h"
 
 /**
- * reverse_listint - this function reverses a linked list
- * @head: A pointer to the 1st node in the list
+ * reverse_listint - reverses a linked list
+ * @head: pointer to the first node in the list
  *
- * Return: a pointer to the first node in the reversed list
+ * Return: pointer to the first node in the new list
  */
 listint_t *reverse_listint(listint_t **head)
 {
