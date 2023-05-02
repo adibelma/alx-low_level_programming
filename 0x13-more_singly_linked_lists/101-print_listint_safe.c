@@ -15,7 +15,7 @@ size_t print_listint_safe(const listint_t *head);
 size_t loop_listint_ln(const listint_t *head)
 {
 	const listint_t *tr, *hr;
-	size_t nodes = 1;
+	size_t nd = 1;
 
 	if (head == NULL || head->next == NULL)
 		return (0);
@@ -30,7 +30,7 @@ size_t loop_listint_ln(const listint_t *head)
 			tr = head;
 			while (tr != hr)
 			{
-				nodes++;
+				nd++;
 				tr = tr->next;
 				hr = hr->next;
 			}
@@ -38,11 +38,11 @@ size_t loop_listint_ln(const listint_t *head)
 			tr = tr->next;
 			while (tr != hr)
 			{
-				nodes++;
+				nd++;
 				tr = tr->next;
 			}
 
-			return (nodes);
+			return (nd);
 		}
 
 		tr = tr->next;
@@ -53,20 +53,20 @@ size_t loop_listint_ln(const listint_t *head)
 }
 
 /**
- * print_listint_safe - Prints a listint_t list safely.
- * @head: A pointer to the head of the listint_t list.
+ * print_listint_safe - prints a listint_t list safe
+ * @head: pointer to the head of the listint_t linked list
  *
- * Return: The number of nodes in the list.
+ * Return: number of nodes in the linked list
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	size_t nodes, index = 0;
+	size_t nd, index = 0;
 
-	nodes = loop_listint_ln(head);
+	nd = loop_listint_ln(head);
 
-	if (nodes == 0)
+	if (nd == 0)
 	{
-		for (; head != NULL; nodes++)
+		for (; head != NULL; nd++)
 		{
 			printf("[%p] %d\n", (void *)head, head->n);
 			head = head->next;
@@ -75,7 +75,7 @@ size_t print_listint_safe(const listint_t *head)
 
 	else
 	{
-		for (index = 0; index < nodes; index++)
+		for (index = 0; index < nd; index++)
 		{
 			printf("[%p] %d\n", (void *)head, head->n);
 			head = head->next;
@@ -84,5 +84,5 @@ size_t print_listint_safe(const listint_t *head)
 		printf("-> [%p] %d\n", (void *)head, head->n);
 	}
 
-	return (nodes);
+	return (nd);
 }
