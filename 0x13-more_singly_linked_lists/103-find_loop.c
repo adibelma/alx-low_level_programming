@@ -25,7 +25,7 @@ listint_t *find_listint_loop(listint_t *head)
 			while (s != f)
 			{
 				s = s->next;
-				f = fast->next;
+				f = f->next;
 			}
 			return (f);
 		}
