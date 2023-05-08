@@ -6,12 +6,12 @@ void close_f(int f);
 char *c_buff(char *file);
 
 /**
- * c_buff - read 1,024 bytes
+ * c_buff - read 1024 bytes
  * @file: Name of the file buff storing chars for it
  *
  * Return: pointer to the new buff
  */
-char *c_buff(char *f)
+char *c_buff(char *file)
 {
 	char *buff;
 
@@ -20,7 +20,7 @@ char *c_buff(char *f)
 	if (buff == NULL)
 	{
 		dprintf(STDERR_FILENO,
-			"Error: Can't write to %s\n", f);
+			"Error: Can't write to %s\n", file);
 		exit(99);
 	}
 
