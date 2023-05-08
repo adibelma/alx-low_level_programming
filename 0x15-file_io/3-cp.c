@@ -28,18 +28,18 @@ char *c_buff(char *file)
 }
 
 /**
- * close_file - Closes file descriptors.
- * @fd: The file descriptor to be closed.
+ * c_file - closes descriptor file
+ * @f: the file descriptor to close
  */
-void close_file(int fd)
+void close_f(int f)
 {
 	int c;
 
-	c = close(fd);
+	c = close(f);
 
 	if (c == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+		dprintf(STDERR_FILENO, "Error: Can't close f %d\n", f);
 		exit(100);
 	}
 }
