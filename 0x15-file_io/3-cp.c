@@ -51,10 +51,10 @@ void cl_f(int f)
  *
  * Return: 0 on success.
  *
- * Description: If the argument count is incorrect - exit code 97.
- *              If file_from does not exist or cannot be read - exit code 98.
- *              If file_to cannot be created or written to - exit code 99.
- *              If file_to or file_from cannot be closed - exit code 100.
+ * Description: exit with code 97 if the argument count is not correct.
+ *              exit with code 98 if file_from doesn't exist or cannot read it.
+ *              exit with code 99 if file_to cannot be created or write to.
+ *              exit with code 100 if file_to or file_from cannot be closed.
  */
 int main(int argc, char *argv[])
 {
