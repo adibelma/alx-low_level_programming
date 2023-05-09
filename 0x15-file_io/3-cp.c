@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 char *create_buff(char *file);
-void c_file(int f);
+void cl_file(int f);
 
 /**
  * create_buff - allocates 1024 bytes for buffer
@@ -28,14 +28,14 @@ char *create_buff(char *file)
 }
 
 /**
- * c_file - function that closes file descriptors
- * @fd: file descript to close
+ * cl_file - function that closes file descriptors
+ * @f: file descript to close
  */
-void c_file(int f)
+void cl_file(int f)
 {
 	int c;
 
-	c = close(f);
+	c = cl(f);
 
 	if (c == -1)
 	{
@@ -96,8 +96,8 @@ int main(int argc, char *argv[])
 	} while (r > 0);
 
 	free(buff);
-	c_file(from);
-	c_file(to);
+	cl_file(from);
+	cl_file(to);
 
 	return (0);
 }
