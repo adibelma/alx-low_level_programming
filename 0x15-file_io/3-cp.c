@@ -13,18 +13,18 @@ void cl_f(int f);
  */
 char *make_buffers(char *file)
 {
-	char *buffer;
+	char *buff;
 
-	buffer = malloc(sizeof(char) * 1024);
+	buff = malloc(sizeof(char) * 1024);
 
-	if (buffer == NULL)
+	if (buff == NULL)
 	{
 		dprintf(STDERR_FILENO,
 			"Error: Can't write to %s\n", file);
 		exit(99);
 	}
 
-	return (buffer);
+	return (buff);
 }
 
 /**
@@ -45,21 +45,21 @@ void cl_f(int f)
 }
 
 /**
- * main - Copies the contents of a file to another file.
- * @argc: The number of arguments supplied to the program.
- * @argv: An array of pointers to the arguments.
+ * main - copie the content filr to another.
+ * @argc: number of argument.
+ * @argv: array of ptr to arguments.
  *
- * Return: 0 on success.
+ * Return: 0 if (Success)
  *
- * Description: If the argument count is incorrect - exit code 97.
- *              If file_from does not exist or cannot be read - exit code 98.
- *              If file_to cannot be created or written to - exit code 99.
- *              If file_to or file_from cannot be closed - exit code 100.
+ * Description: if the argument is incorrect, then exit with code 97 and print something.
+ *              if file_from doesn't exist, or if we cannot read it, exit code 98 and print something.
+ *              if file_to can not creat, exit code 99 and print something.
+ *              if file discriptor cannot be closed, exit code 100 and print something.
  */
 int main(int argc, char *argv[])
 {
 	int from, to, r, w;
-	char *buffer;
+	char *buff;
 
 	if (argc != 3)
 	{
@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
 		exit(97);
 	}
 
-	buffer = make_buffers(argv[2]);
+	buff = make_buffers(argv[2]);
 	from = open(argv[1], O_RDONLY);
 	r = read(from, buffer, 1024);
 	to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
@@ -77,25 +77,25 @@ int main(int argc, char *argv[])
 		{
 			dprintf(STDERR_FILENO,
 				"Error: Can't read from file %s\n", argv[1]);
-			free(buffer);
+			free(buff);
 			exit(98);
 		}
 
-		w = write(to, buffer, r);
+		w = write(to, buff, r);
 		if (to == -1 || w == -1)
 		{
 			dprintf(STDERR_FILENO,
 				"Error: Can't write to %s\n", argv[2]);
-			free(buffer);
+			free(buff);
 			exit(99);
 		}
 
-		r = read(from, buffer, 1024);
+		r = read(from, buff, 1024);
 		to = open(argv[2], O_WRONLY | O_APPEND);
 
 	} while (r > 0);
 
-	free(buffer);
+	free(buff);
 	cl_f(from);
 	cl_f(to);
 
