@@ -45,16 +45,16 @@ void cl_f(int f)
 }
 
 /**
- * main - copie the content filr to another.
+ * main - copie the content file to another.
  * @argc: number of argument.
  * @argv: array of ptr to arguments.
  *
  * Return: 0 if (Success)
  *
- * Description: if the argument is incorrect, then exit with code 97 and print something.
- *              if file_from doesn't exist, or if we cannot read it, exit code 98 and print something.
- *              if file_to can not creat, exit code 99 and print something.
- *              if file discriptor cannot be closed, exit code 100 and print something.
+ * Description: If the argument is incorrect, then exit with code 97 and print.
+ *              If file_from doesn't exist, or if we cannot read it, exit code 98 and print.
+ *              If file_to can not creat, exit code 99 and print.
+ *              If file discriptor cannot be closed, exit code 100 and print.
  */
 int main(int argc, char *argv[])
 {
