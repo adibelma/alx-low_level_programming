@@ -45,16 +45,16 @@ void cl_f(int f)
 }
 
 /**
- * main - Copies the contents of a file to another file.
- * @argc: The number of arguments supplied to the program.
- * @argv: An array of pointers to the arguments.
+ * main - Function is copies contents of a file to another.
+ * @argc: Number of arguments supply to program.
+ * @argv: Array of ptr to arguments.
  *
- * Return: 0 on success.
+ * Return: 0 if success.
  *
  * Description: exit with code 97 if the argument count is not correct.
  *              exit with code 98 if file_from doesn't exist or cannot read it.
  *              exit with code 99 if file_to cannot be created or write to.
- *              exit with code 100 if file_to or file_from cannot be closed.
+ *              exit with code 100 if descriptor file cannot be closed.
  */
 int main(int argc, char *argv[])
 {
