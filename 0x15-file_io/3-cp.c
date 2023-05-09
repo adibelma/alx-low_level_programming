@@ -2,44 +2,44 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char *create_buffer(char *file);
-void close_file(int fd);
+char *create_buff(char *file);
+void c_file(int f);
 
 /**
- * create_buffer - Allocates 1024 bytes for a buffer.
- * @file: The name of the file buffer is storing chars for.
+ * create_buff - allocates 1024 bytes for buffer
+ * @file: name of the file buff is storing chars for
  *
- * Return: A pointer to the newly-allocated buffer.
+ * Return: pointer to new allocate buff
  */
-char *create_buffer(char *file)
+char *create_buff(char *file)
 {
-	char *buffer;
+	char *buff;
 
-	buffer = malloc(sizeof(char) * 1024);
+	buff = malloc(sizeof(char) * 1024);
 
-	if (buffer == NULL)
+	if (buff == NULL)
 	{
 		dprintf(STDERR_FILENO,
 			"Error: Can't write to %s\n", file);
 		exit(99);
 	}
 
-	return (buffer);
+	return (buff);
 }
 
 /**
- * close_file - Closes file descriptors.
- * @fd: The file descriptor to be closed.
+ * c_file - function that closes file descriptors
+ * @fd: file descript to close
  */
-void close_file(int fd)
+void c_file(int f)
 {
 	int c;
 
-	c = close(fd);
+	c = close(f);
 
 	if (c == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+		dprintf(STDERR_FILENO, "Error: Can't close f %d\n", f);
 		exit(100);
 	}
 }
@@ -59,7 +59,7 @@ void close_file(int fd)
 int main(int argc, char *argv[])
 {
 	int from, to, r, w;
-	char *buffer;
+	char *buff;
 
 	if (argc != 3)
 	{
@@ -67,9 +67,9 @@ int main(int argc, char *argv[])
 		exit(97);
 	}
 
-	buffer = create_buffer(argv[2]);
+	buff = create_buff(argv[2]);
 	from = open(argv[1], O_RDONLY);
-	r = read(from, buffer, 1024);
+	r = read(from, buff, 1024);
 	to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
 	do {
@@ -77,27 +77,27 @@ int main(int argc, char *argv[])
 		{
 			dprintf(STDERR_FILENO,
 				"Error: Can't read from file %s\n", argv[1]);
-			free(buffer);
+			free(buff);
 			exit(98);
 		}
 
-		w = write(to, buffer, r);
+		w = write(to, buff, r);
 		if (to == -1 || w == -1)
 		{
 			dprintf(STDERR_FILENO,
 				"Error: Can't write to %s\n", argv[2]);
-			free(buffer);
+			free(buff);
 			exit(99);
 		}
 
-		r = read(from, buffer, 1024);
+		r = read(from, buff, 1024);
 		to = open(argv[2], O_WRONLY | O_APPEND);
 
 	} while (r > 0);
 
-	free(buffer);
-	close_file(from);
-	close_file(to);
+	free(buff);
+	c_file(from);
+	c_file(to);
 
 	return (0);
 }
