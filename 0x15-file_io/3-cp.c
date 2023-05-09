@@ -58,7 +58,7 @@ void cl_f(int f)
  */
 int main(int argc, char *argv[])
 {
-	int from, to, r, w;
+	int frm, too, ipt_r, opt_w;
 	char *buff;
 
 	if (argc != 3)
@@ -68,12 +68,12 @@ int main(int argc, char *argv[])
 	}
 
 	buff = make_buffers(argv[2]);
-	from = open(argv[1], O_RDONLY);
-	r = read(from, buff, 1024);
-	to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	frm = open(argv[1], O_RDONLY);
+	ipt_r = read(frm, buff, 1024);
+	too = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
 	do {
-		if (from == -1 || r == -1)
+		if (frm == -1 || ipt_r == -1)
 		{
 			dprintf(STDERR_FILENO,
 				"Error: Can't read from file %s\n", argv[1]);
@@ -81,8 +81,8 @@ int main(int argc, char *argv[])
 			exit(98);
 		}
 
-		w = write(to, buff, r);
-		if (to == -1 || w == -1)
+		opt_w = write(too, buff, ipt_r);
+		if (too == -1 || opt_w == -1)
 		{
 			dprintf(STDERR_FILENO,
 				"Error: Can't write to %s\n", argv[2]);
@@ -90,14 +90,14 @@ int main(int argc, char *argv[])
 			exit(99);
 		}
 
-		r = read(from, buff, 1024);
-		to = open(argv[2], O_WRONLY | O_APPEND);
+		ipt_r = read(frm, buff, 1024);
+		too = open(argv[2], O_WRONLY | O_APPEND);
 
-	} while (r > 0);
+	} while (ipt_r > 0);
 
 	free(buff);
-	cl_f(from);
-	cl_f(to);
+	cl_f(frm);
+	cl_f(too);
 
 	return (0);
 }
