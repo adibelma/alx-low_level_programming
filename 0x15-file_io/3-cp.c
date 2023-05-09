@@ -35,7 +35,7 @@ void cl_file(int f)
 {
 	int c;
 
-	c = cl(f);
+	c = close(f);
 
 	if (c == -1)
 	{
