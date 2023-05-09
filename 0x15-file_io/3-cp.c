@@ -3,13 +3,13 @@
 #include <stdlib.h>
 
 char *make_buffers(char *file);
-void cl_f(int fd);
+void cl_f(int f);
 
 /**
- * make_buffers - Allocates 1024 bytes for a buffer.
- * @file: The name of the file buffer is storing chars for.
+ * make_buffers - asign 1024 bytes for buffer.
+ * @file: Name of buffer file is storing chars.
  *
- * Return: A pointer to the newly-allocated buffer.
+ * Return: a ptr to the new assign buffer.
  */
 char *make_buffers(char *file)
 {
@@ -28,18 +28,18 @@ char *make_buffers(char *file)
 }
 
 /**
- * cl_f - Closes file descriptors.
- * @fd: The file descriptor to be closed.
+ * cl_f - function is closes files descriptors.
+ * @f: file descriptor to close.
  */
-void cl_f(int fd)
+void cl_f(int f)
 {
 	int c;
 
-	c = close(fd);
+	c = close(f);
 
 	if (c == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", f);
 		exit(100);
 	}
 }
