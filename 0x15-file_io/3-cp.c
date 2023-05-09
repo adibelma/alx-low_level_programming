@@ -13,18 +13,18 @@ void cl_f(int f);
  */
 char *make_buffers(char *file)
 {
-	char *buff;
+	char *buffer;
 
-	buff = malloc(sizeof(char) * 1024);
+	buffer = malloc(sizeof(char) * 1024);
 
-	if (buff == NULL)
+	if (buffer == NULL)
 	{
 		dprintf(STDERR_FILENO,
 			"Error: Can't write to %s\n", file);
 		exit(99);
 	}
 
-	return (buff);
+	return (buffer);
 }
 
 /**
@@ -49,7 +49,7 @@ void cl_f(int f)
  * @argc: number of argument.
  * @argv: array of ptr to arguments.
  *
- * Return: 0 if (Success)
+ * Return: 0 if success.
  *
  * Description: If the argument is incorrect, then exit with code 97 and print.
  *              If file_from doesn't exist, or if we cannot read it, exit code 98 and print.
@@ -59,7 +59,7 @@ void cl_f(int f)
 int main(int argc, char *argv[])
 {
 	int from, to, r, w;
-	char *buff;
+	char *buffer;
 
 	if (argc != 3)
 	{
@@ -67,9 +67,9 @@ int main(int argc, char *argv[])
 		exit(97);
 	}
 
-	buff = make_buffers(argv[2]);
+	buffer = make_buffers(argv[2]);
 	from = open(argv[1], O_RDONLY);
-	r = read(from, buff, 1024);
+	r = read(from, buffer, 1024);
 	to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
 	do {
@@ -77,25 +77,25 @@ int main(int argc, char *argv[])
 		{
 			dprintf(STDERR_FILENO,
 				"Error: Can't read from file %s\n", argv[1]);
-			free(buff);
+			free(buffer);
 			exit(98);
 		}
 
-		w = write(to, buff, r);
+		w = write(to, buffer, r);
 		if (to == -1 || w == -1)
 		{
 			dprintf(STDERR_FILENO,
 				"Error: Can't write to %s\n", argv[2]);
-			free(buff);
+			free(buffer);
 			exit(99);
 		}
 
-		r = read(from, buff, 1024);
+		r = read(from, buffer, 1024);
 		to = open(argv[2], O_WRONLY | O_APPEND);
 
 	} while (r > 0);
 
-	free(buff);
+	free(buffer);
 	cl_f(from);
 	cl_f(to);
 
