@@ -46,8 +46,8 @@ void cl_f(int f)
 
 /**
  * main - Function is copies contents of a file to another.
- * @argc: Number of arguments supply to program.
  * @argv: Array of ptr to arguments.
+ * @argc: Number of arguments supply to program.
  *
  * Return: 0 if success.
  *
